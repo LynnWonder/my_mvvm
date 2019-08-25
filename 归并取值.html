@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>归并取值</title>
+</head>
+<body>
+<script>
+    let vm={
+        el:'div',
+        data:{
+            message:{
+                a:'hello,world',
+                b:'hello'
+            },
+        }
+    };
+    function getVal(vm,txt){
+        let expr=txt.split('.');
+        return expr.reduce((res,next)=>{
+            return res[next];
+        },vm.data)
+    }
+
+    /**
+     * 此处有关于replace方法第二个参数为函数的用法：
+     * 为函数时，第1-n个参数为匹配到的符合条件的字符串
+     * 第2批参数为匹配到的第一个符合的字符串的首位索引
+     * 第三批参数为原字符串
+     * @param vm
+     * @param txtg
+     * @returns {void | string}
+     */
+    function getTextVal(vm,txt){
+        return txt.replace(/\{\{([^}]+)\}\}/g,(...arguments)=>{
+            console.info('arg===>',arguments);
+            return getVal(vm,arguments[1]);
+        })
+    }
+    function setVal(vm,txt,val){
+        let expr=txt.split('.');
+        return expr.reduce((res,next)=>{
+            if (next===expr.length-1)
+              return  res[next]=val;
+            return res[next];
+        },vm.data);
+    }
+    console.info(getVal(vm,'message.a'));
+    console.info(getTextVal(vm,'{{message.a}}'));
+    console.info(setVal(vm,'message.b','test'));
+</script>
+</body>
+</html>

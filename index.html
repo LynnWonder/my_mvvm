@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="message.a" />
+    {{message.a}}
+</div>
+<script src="Watcher.js"></script>
+<script src="Observer.js"></script>
+<script src="Compile.js"></script>
+<script src="mvvm.js"></script>
+<script>
+    //将标签放到内存中去，然后 编译 =》 提前想要的元素元素节点 v-model 和文本节点 {{}}
+    let vm = new MVVM({
+        el : "#app",
+        data:{
+            message:{
+                a:'this is a test'
+            }
+        }
+    })
+</script>
+</body>
+</html>
