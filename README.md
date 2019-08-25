@@ -1,5 +1,6 @@
 # 实现一个自己的MVVM模式
 数据流动图：
+![image](https://box.kancloud.cn/3cbad9f6d8d17a89a0a6ecf56c818f35_1878x1062.png)
 ![image](https://upload-images.jianshu.io/upload_images/9199255-aa098dd6b3a0eae4.png?imageMogr2/auto-orient/strip|imageView2/2/w/669/format/webp)
 ## 回顾vue实现数据双向绑定的原理
 1. 利用compile解析模版指令，将模版中的变量替换成数据，然后初始化渲染视图，并将每个指令对应的节点绑定更新函数（watcher的回调函数），添加数据绑定的订阅者watcher。
